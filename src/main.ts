@@ -1,4 +1,5 @@
 import './assets/base.css'
+import './assets/js/rem.js'
 
 import 'element-plus/dist/index.css'
 

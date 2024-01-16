@@ -7,7 +7,11 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    CityCategory: typeof import('./src/components/cityCategory/CityCategory.vue')['default']
+    CitysHeader: typeof import('./src/components/headers/CitysHeader.vue')['default']
+    ElButton: typeof import('element-plus/es')['ElButton']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    SearchAddressHeader: typeof import('./src/components/headers/SearchAddressHeader.vue')['default']
   }
 }
