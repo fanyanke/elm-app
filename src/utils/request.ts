@@ -4,7 +4,7 @@ import { ElLoading } from 'element-plus'
 let loading
 
 const service = axios.create({
-  baseURL: 'http://127.0.0.1:8001/v1',
+  baseURL: 'http://127.0.0.1:8001',
   timeout: 5000
 })
 

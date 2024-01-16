@@ -21,6 +21,11 @@ const router = createRouter({
       name: 'searchAddressPage',
       path: '/cities',
       component: () => import('@/views/SearchAddress.vue')
+    },
+    {
+      name: 'home',
+      path: '/home',
+      component: () => import('@/views/Home.vue')
     }
   ]
 })

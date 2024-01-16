@@ -12,6 +12,7 @@ declare module 'vue' {
     ElButton: typeof import('element-plus/es')['ElButton']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    SearchAddress: typeof import('./src/components/search/SearchAddress.vue')['default']
     SearchAddressHeader: typeof import('./src/components/headers/SearchAddressHeader.vue')['default']
   }
 }
