@@ -10,6 +10,7 @@ declare module 'vue' {
     CityCategory: typeof import('./src/components/cityCategory/CityCategory.vue')['default']
     CitysHeader: typeof import('./src/components/headers/CitysHeader.vue')['default']
     ElButton: typeof import('element-plus/es')['ElButton']
+    HomeHeader: typeof import('./src/components/headers/HomeHeader.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SearchAddress: typeof import('./src/components/search/SearchAddress.vue')['default']

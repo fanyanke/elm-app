@@ -34,6 +34,7 @@
 
 <script setup lang="ts">
 import { ref, toRef } from 'vue'
+import { storeToRefs } from 'pinia'
 import { useRoute, useRouter } from 'vue-router'
 import { ElMessage } from 'element-plus'
 import { useAddressStore } from '@/stores/address'
@@ -43,8 +44,7 @@ let showFlag = ref(true)
 const router = useRouter()
 const query = toRef(useRoute(), 'query')
 const addressStore = useAddressStore()
-const { cityAddress, searchHistory } = addressStore
-console.log(searchHistory)
+const { cityAddress, searchHistory } = storeToRefs(addressStore)
 let inp = ref()
 let keyword = ref('')
 const submit = () => {
@@ -81,8 +81,8 @@ const getAddress = (query) => {
 }
 
 const clearHistory = () => {
-  // 清空历史记录，清除store中的数据以及Storage中的数据
-  console.log('清空历史记录')
+  // 清空历史记录
+  searchHistory.value = []
 }
 
 const goHome = (address) => {

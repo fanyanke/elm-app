@@ -1,6 +1,10 @@
 import { reactive, ref } from 'vue'
 import { defineStore } from 'pinia'
-import { getCityService, getCityAddressService } from '@/api/address'
+import {
+  getCityService,
+  getCityAddressService,
+  getDetailAddressService
+} from '@/api/address'
 
 export const useAddressStore = defineStore(
   'address',
@@ -62,6 +66,14 @@ export const useAddressStore = defineStore(
       searchHistory.value.push(address)
     }
 
+    // 当前详细地址
+    let detailAddress = reactive({})
+    // 根据搜索地址的经纬值获取准确位置
+    let getDetailAddress = async (geohash) => {
+      let res = await getDetailAddressService(geohash)
+      Object.assign(detailAddress, res)
+    }
+
     return {
       currentCity,
       getCurrentCity,
@@ -72,7 +84,9 @@ export const useAddressStore = defineStore(
       cityAddress,
       getCityAddress,
       searchHistory,
-      addHistory
+      addHistory,
+      detailAddress,
+      getDetailAddress
     }
   },
   {
