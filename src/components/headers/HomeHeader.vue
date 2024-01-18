@@ -1,13 +1,17 @@
 <template>
   <div class="home-header">
     <div class="search">
-      <svg class="icon" aria-hidden="true" @click="$router.back()">
-        <use xlink:href="#icon-zuojiantou"></use>
+      <svg class="icon" aria-hidden="true" @click="$router.push('/search')">
+        <use xlink:href="#icon-sousuo"></use>
       </svg>
     </div>
-    <div class="title">{{ address }}</div>
+    <div class="title">
+      <router-link to="/citys">
+        {{ address }}
+      </router-link>
+    </div>
     <div class="login">
-      <router-link to="/login" class="white"> 登录/注册 </router-link>
+      <router-link to="/login" class="white"> 登录/注册</router-link>
     </div>
   </div>
 </template>
@@ -28,16 +32,27 @@ defineProps(['address'])
   color: #fff;
   position: fixed;
   top: 0;
+  z-index: 999;
 
   .search {
+    width: 1rem;
     .icon {
-      height: 0.4rem;
-      width: 0.4rem;
+      height: 0.5rem;
+      width: 0.5rem;
       margin-top: 0.1rem;
+      fill: #fff;
     }
   }
+
   .title {
-    margin-left: 0.4rem;
+    width: 50%;
+    overflow: hidden;
+    white-space: nowrap; /* 防止文字换行 */
+    text-overflow: ellipsis; /* 超出部分显示省略号 */
+    text-align: center;
+    a {
+      color: #fff;
+    }
   }
 }
 </style>

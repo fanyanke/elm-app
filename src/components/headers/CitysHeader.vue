@@ -25,6 +25,5 @@ import { RouterLink } from 'vue-router'
   color: #fff;
   position: fixed;
   top: 0;
-
 }
 </style>

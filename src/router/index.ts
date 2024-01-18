@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import { useGlobalStore } from '@/stores/global'
 
 const router = createRouter({
   history: createWebHistory(),
@@ -26,8 +27,41 @@ const router = createRouter({
       name: 'home',
       path: '/home',
       component: () => import('@/views/Home.vue')
+    },
+    {
+      name: 'searchFood',
+      path: '/search',
+      component: () => import('@/views/SearchFood.vue')
+    },
+    {
+      name: 'foodCate',
+      path: '/food',
+      component: () => import('@/views/Food.vue')
+    },
+    {
+      name: 'order',
+      path: '/order',
+      component: () => import('@/views/Order.vue')
+    },
+    {
+      name: 'user',
+      path: '/user',
+      component: () => import('@/views/User.vue')
     }
   ]
+})
+
+router.beforeEach((to, from) => {
+  const globalStore = useGlobalStore()
+
+  const navRoute = ['/home', '/search', '/order', '/user']
+
+  if (navRoute.indexOf(to.path) !== -1) {
+    console.log(to.path)
+    // 代表当前路由需要展示底部导航
+    globalStore.footerFlag = true
+  }
+  globalStore.footerFlag = false
 })
 
 export default router
