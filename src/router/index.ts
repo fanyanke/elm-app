@@ -51,15 +51,15 @@ const router = createRouter({
   ]
 })
 
-router.beforeEach((to, from) => {
+router.beforeEach((to) => {
   const globalStore = useGlobalStore()
 
   const navRoute = ['/home', '/search', '/order', '/user']
 
   if (navRoute.indexOf(to.path) !== -1) {
-    console.log(to.path)
     // 代表当前路由需要展示底部导航
     globalStore.footerFlag = true
+    return console.log('当前跳转路由：', to.path)
   }
   globalStore.footerFlag = false
 })

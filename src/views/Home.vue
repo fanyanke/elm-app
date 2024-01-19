@@ -27,6 +27,7 @@ const route = useRoute()
 const addressStore = useAddressStore()
 addressStore.getDetailAddress(route.query.geohash)
 const { detailAddress } = storeToRefs(addressStore)
+
 </script>
 
 <style scoped lang="scss">

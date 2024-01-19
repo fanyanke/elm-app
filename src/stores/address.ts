@@ -5,6 +5,7 @@ import {
   getCityAddressService,
   getDetailAddressService
 } from '@/api/address'
+import { useGlobalStore } from '@/stores/global'
 
 export const useAddressStore = defineStore(
   'address',
@@ -72,6 +73,9 @@ export const useAddressStore = defineStore(
     let getDetailAddress = async (geohash) => {
       let res = await getDetailAddressService(geohash)
       Object.assign(detailAddress, res)
+      const globalStore = useGlobalStore()
+      // 将当前定位经纬度存到全局仓库
+      globalStore.geohash = detailAddress.geohash
     }
 
     return {

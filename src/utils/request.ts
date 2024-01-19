@@ -4,7 +4,7 @@ import { ElLoading } from 'element-plus'
 let loading
 
 const service = axios.create({
-  baseURL: 'http://127.0.0.1:8001',
+  baseURL: 'http://192.168.1.5:8001',
   timeout: 5000
 })
 
@@ -20,8 +20,8 @@ service.interceptors.request.use((config) => {
 
 // 响应拦截器
 service.interceptors.response.use((response) => {
-  if (response.status === 200) {
     loading.close()
+    if (response.status === 200) {
     return response.data
   }
 })

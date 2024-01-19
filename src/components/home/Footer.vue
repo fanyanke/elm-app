@@ -17,9 +17,17 @@
 
 <script setup lang="ts">
 import { nanoid } from 'nanoid'
+import { useGlobalStore } from '@/stores/global'
+
+const globalStore = useGlobalStore()
 
 const navs = [
-  { id: nanoid(), icon: '#icon-elemo', title: '外卖', route: '/home' },
+  {
+    id: nanoid(),
+    icon: '#icon-elemo',
+    title: '外卖',
+    route: `/home?geohash=${globalStore.geohash}`
+  },
   { id: nanoid(), icon: '#icon-zhinanzhen', title: '搜索', route: '/search' },
   { id: nanoid(), icon: '#icon-dingdan01', title: '订单', route: '/order' },
   { id: nanoid(), icon: '#icon-wode', title: '我的', route: '/user' }
