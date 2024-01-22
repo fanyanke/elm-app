@@ -9,7 +9,7 @@
         </svg>
         <span>附近商家</span>
       </div>
-      <merchant-list :geohash="route.query.geohash"></merchant-list>
+      <merchant-list :merchantList="merchantList"></merchant-list>
     </div>
     <footer-nav></footer-nav>
   </div>
@@ -18,6 +18,8 @@
 import { storeToRefs } from 'pinia'
 import { useRoute } from 'vue-router'
 import { useAddressStore } from '@/stores/address'
+import { useMerchantStore } from '@/stores/merchant'
+
 import HomeHeader from '@/components/headers/HomeHeader.vue'
 import Carousel from '@/components/home/Carousel.vue'
 import MerchantList from '@/components/home/MerchantList.vue'
@@ -25,9 +27,19 @@ import FooterNav from '@/components/home/Footer.vue'
 
 const route = useRoute()
 const addressStore = useAddressStore()
+
+// 获取当前详细地址
 addressStore.getDetailAddress(route.query.geohash)
 const { detailAddress } = storeToRefs(addressStore)
 
+// 获取商铺列表
+const merchantStore = useMerchantStore()
+let geohash = route.query.geohash.split(',')
+let latitude = geohash[0]
+let longitude = geohash[1]
+let query = { latitude, longitude }
+merchantStore.getMerchantList(query)
+const { merchantList } = storeToRefs(merchantStore)
 </script>
 
 <style scoped lang="scss">

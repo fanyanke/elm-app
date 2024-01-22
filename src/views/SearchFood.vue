@@ -104,6 +104,7 @@ const getMerchant = async (i) => {
 
 <style scoped lang="scss">
 .search-food-page {
+  padding-bottom: 1rem;
   .search-food {
     background-color: #fff;
     padding: 0.2rem 0.3rem;

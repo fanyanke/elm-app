@@ -51,20 +51,7 @@
 </template>
 
 <script setup lang="ts">
-import { storeToRefs } from 'pinia'
-import { useMerchantStore } from '@/stores/merchant'
-
-const merchantStore = useMerchantStore()
-
-let props = defineProps(['geohash'])
-
-let geohash = props.geohash.split(',')
-let latitude = geohash[0]
-let longitude = geohash[1]
-
-let query = { latitude, longitude }
-merchantStore.getMerchantList(query)
-const { merchantList } = storeToRefs(merchantStore)
+const { merchantList } = defineProps(['merchantList'])
 </script>
 
 <style scoped lang="scss">
