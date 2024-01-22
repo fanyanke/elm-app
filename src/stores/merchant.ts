@@ -1,6 +1,10 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
-import { getMerchantListService, getMerchantCateService } from '@/api/merchant'
+import {
+  getMerchantListService,
+  getMerchantCateService,
+  getMerchantAttrService
+} from '@/api/merchant'
 
 export const useMerchantStore = defineStore(
   'merchant',
@@ -30,6 +34,12 @@ export const useMerchantStore = defineStore(
       merchantCateList.value = res
     }
 
+    // 商家属性活动列表
+    let merchantAttrList = ref([])
+    let getMerchantAttr = async () => {
+      merchantAttrList.value = await getMerchantAttrService()
+    }
+
     return {
       merchantList,
       getMerchantList,
@@ -37,7 +47,9 @@ export const useMerchantStore = defineStore(
       addSearchHistory,
       searchMerchantList,
       merchantCateList,
-      getMerchantCate
+      getMerchantCate,
+      merchantAttrList,
+      getMerchantAttr
     }
   },
   {

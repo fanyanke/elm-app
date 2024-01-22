@@ -15,6 +15,7 @@ defineProps(['title'])
 .comm-header {
   position: fixed;
   top: 0;
+  z-index: 999;
   height: 1rem;
   width: 100%;
   background-color: #3190e8;

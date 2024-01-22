@@ -11,3 +11,7 @@ export const getSearchMerchantService = (query) =>
 // 商铺分类列表
 export const getMerchantCateService = () =>
   service.get('/shopping/v2/restaurant/category')
+
+// 商铺属性活动列表
+export const getMerchantAttrService = () =>
+  service.get('/shopping/v1/restaurants/activity_attributes')

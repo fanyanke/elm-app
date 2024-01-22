@@ -7,7 +7,11 @@ const globalStore = useGlobalStore()
 
 <template>
   <div class="app">
-    <router-view></router-view>
+    <router-view v-slot="{ Component }">
+      <keep-alive exclude="Food">
+        <component :is="Component" />
+      </keep-alive>
+    </router-view>
     <footer-nav v-show="globalStore.footerFlag"></footer-nav>
   </div>
 </template>

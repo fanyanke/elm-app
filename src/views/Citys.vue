@@ -25,8 +25,8 @@
       </div>
     </div>
 
-    <city-category :citys="hotCity"></city-category>
-    <city-category :citys="allCity"></city-category>
+      <city-category :citys="hotCity"></city-category>
+      <city-category :citys="allCity"></city-category>
   </div>
 </template>
 
