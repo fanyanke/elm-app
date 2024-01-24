@@ -1,5 +1,5 @@
 <template>
-  <div class="comm-header">
+  <div class="comm-header" :style="`background-color: ${backColor}`">
     <svg class="icon" aria-hidden="true" @click="$router.back()">
       <use xlink:href="#icon-zuojiantou"></use>
     </svg>
@@ -8,7 +8,13 @@
 </template>
 
 <script setup lang="ts">
-defineProps(['title'])
+defineProps({
+  title: { type: String },
+  backColor: {
+    type: String,
+    default: '#3190e8'
+  }
+})
 </script>
 
 <style scoped lang="scss">

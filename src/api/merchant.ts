@@ -15,3 +15,7 @@ export const getMerchantCateService = () =>
 // 商铺属性活动列表
 export const getMerchantAttrService = () =>
   service.get('/shopping/v1/restaurants/activity_attributes')
+
+// 商铺详情
+export const getMerchantDetailService = (id, query) =>
+  service.get(`/shopping/restaurant/${id}`, { params: { ...query } })

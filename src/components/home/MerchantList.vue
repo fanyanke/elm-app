@@ -1,7 +1,11 @@
 <template>
   <div class="shop-list">
     <ul>
-      <li v-for="merchant in merchantList" :key="merchant.id">
+      <li
+        v-for="merchant in merchantList"
+        :key="merchant.id"
+        @click="goto(merchant)"
+      >
         <img :src="`http://elm.cangdu.org/img/${merchant.image_path}`" alt="" />
         <div class="mes">
           <div class="one-line">
@@ -51,7 +55,20 @@
 </template>
 
 <script setup lang="ts">
+import { useRouter } from 'vue-router'
+import { useGlobalStore } from '@/stores/global'
+
 const { merchantList } = defineProps(['merchantList'])
+
+const router = useRouter()
+const globalStore = useGlobalStore()
+
+const goto = (merchant) => {
+  router.push({
+    name: 'shop',
+    query: { geohash: globalStore.geohash, id: merchant.id }
+  })
+}
 </script>
 
 <style scoped lang="scss">

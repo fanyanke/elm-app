@@ -3,7 +3,8 @@ import { ref } from 'vue'
 import {
   getMerchantListService,
   getMerchantCateService,
-  getMerchantAttrService
+  getMerchantAttrService,
+  getMerchantDetailService
 } from '@/api/merchant'
 
 export const useMerchantStore = defineStore(
@@ -40,6 +41,12 @@ export const useMerchantStore = defineStore(
       merchantAttrList.value = await getMerchantAttrService()
     }
 
+    // 商家详情
+    let merchantDetail = ref({})
+    let getMerchantDetail = async (id, query) => {
+      merchantDetail.value = await getMerchantDetailService(id, query)
+    }
+
     return {
       merchantList,
       getMerchantList,
@@ -49,7 +56,9 @@ export const useMerchantStore = defineStore(
       merchantCateList,
       getMerchantCate,
       merchantAttrList,
-      getMerchantAttr
+      getMerchantAttr,
+      merchantDetail,
+      getMerchantDetail
     }
   },
   {

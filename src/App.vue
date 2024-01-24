@@ -8,7 +8,7 @@ const globalStore = useGlobalStore()
 <template>
   <div class="app">
     <router-view v-slot="{ Component }">
-      <keep-alive exclude="Food">
+      <keep-alive exclude="Food, Shop">
         <component :is="Component" />
       </keep-alive>
     </router-view>

@@ -57,7 +57,6 @@ import { useRoute } from 'vue-router'
 import { useMerchantStore } from '@/stores/merchant'
 import HeaderNav from '@/components/headers/CommHeader.vue'
 import MerchantList from '@/components/home/MerchantList.vue'
-import request from '@/utils/request'
 
 const { query } = toRefs(useRoute())
 let foodCateValue = ref([query.value.restaurant_category_id])
