@@ -32,19 +32,13 @@
           <use xlink:href="#icon-youjiantou-copy"></use>
         </svg>
       </div>
-      <div
-        class="activity"
-        v-if="merchantStore.merchantDetail.activities?.length != 0"
-      >
-        <span class="txt">
-          {{
-            merchantStore.merchantDetail.activities[0].description
-          }}（APP专享）
+      <div class="activity" v-if="activities?.length != 0">
+        <span class="txt" v-if="activities">
+          {{ activities[0].description }}（APP专享）
         </span>
+        <span class="txt" v-else> 暂无活动 </span>
         <div class="detail">
-          <span
-            >{{ merchantStore.merchantDetail.activities.length }}个活动</span
-          >
+          <span>{{ activities?.length }}个活动</span>
           <svg class="icon" aria-hidden="true">
             <use xlink:href="#icon-youjiantou-copy"></use>
           </svg>
@@ -83,6 +77,7 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue'
 import CommHeader from '@/components/headers/CommHeader.vue'
 import { useRoute } from 'vue-router'
 import { useMerchantStore } from '@/stores/merchant'
@@ -92,11 +87,20 @@ const merchantStore = useMerchantStore()
 let geohash = route.query.geohash.split(',')
 let latitude = geohash[0]
 let longitude = geohash[1]
-merchantStore.getMerchantDetail(route.query.id, { latitude, longitude })
+
+let activities = ref([])
+
+const xxx = async () => {
+  await merchantStore.getMerchantDetail(route.query.id, { latitude, longitude })
+  activities.value = merchantStore.merchantDetail.activities
+}
+
+xxx()
 </script>
 
 <style scoped lang="scss">
 .shop-page {
+  height: 100%;
   .message {
     position: relative;
     background-color: rgba(119, 103, 137, 0.43);
