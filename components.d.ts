@@ -7,15 +7,25 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    Carousel: typeof import('./src/components/home/Carousel.vue')['default']
+    CityCategory: typeof import('./src/components/cityCategory/CityCategory.vue')['default']
+    CitysHeader: typeof import('./src/components/headers/CitysHeader.vue')['default']
+    CommHeader: typeof import('./src/components/headers/CommHeader.vue')['default']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElCard: typeof import('element-plus/es')['ElCard']
     ElCascader: typeof import('element-plus/es')['ElCascader']
+    ElDrawer: typeof import('element-plus/es')['ElDrawer']
     ElMenu: typeof import('element-plus/es')['ElMenu']
     ElMenuItem: typeof import('element-plus/es')['ElMenuItem']
     ElOption: typeof import('element-plus/es')['ElOption']
     ElRate: typeof import('element-plus/es')['ElRate']
     ElSelect: typeof import('element-plus/es')['ElSelect']
+    Footer: typeof import('./src/components/home/Footer.vue')['default']
+    HomeHeader: typeof import('./src/components/headers/HomeHeader.vue')['default']
+    MerchantList: typeof import('./src/components/home/MerchantList.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    SearchAddress: typeof import('./src/components/search/SearchAddress.vue')['default']
+    SearchAddressHeader: typeof import('./src/components/headers/SearchAddressHeader.vue')['default']
   }
 }

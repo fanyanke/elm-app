@@ -28,12 +28,12 @@
             merchantStore.merchantDetail.promotion_info
           }}</span>
         </div>
-        <svg class="icon" aria-hidden="true">
+        <svg class="icon" aria-hidden="true" @click="detail">
           <use xlink:href="#icon-youjiantou-copy"></use>
         </svg>
       </div>
       <div class="activity" v-if="activities?.length != 0">
-        <span class="txt" v-if="activities">
+        <span class="txt" v-if="activities && activities.length">
           {{ activities[0].description }}（APP专享）
         </span>
         <span class="txt" v-else> 暂无活动 </span>
@@ -73,6 +73,21 @@
         </div>
       </el-card>
     </div>
+
+    <el-drawer
+      v-model="drawer"
+      title="I am the title"
+      :with-header="false"
+      size="100%"
+      modal-class="drawer"
+    >
+      <div class="comm-header">
+        <svg class="icon" aria-hidden="true" @click="drawer = false">
+          <use xlink:href="#icon-zuojiantou"></use>
+        </svg>
+        <span> 商家详情 </span>
+      </div>
+    </el-drawer>
   </div>
 </template>
 
@@ -83,6 +98,8 @@ import { useRoute } from 'vue-router'
 import { useMerchantStore } from '@/stores/merchant'
 
 const route = useRoute()
+
+let drawer = ref(false)
 const merchantStore = useMerchantStore()
 let geohash = route.query.geohash.split(',')
 let latitude = geohash[0]
@@ -90,12 +107,14 @@ let longitude = geohash[1]
 
 let activities = ref([])
 
-const xxx = async () => {
+const getMerchantMesData = async () => {
   await merchantStore.getMerchantDetail(route.query.id, { latitude, longitude })
   activities.value = merchantStore.merchantDetail.activities
 }
-
-xxx()
+const detail = () => {
+  drawer.value = true
+}
+getMerchantMesData()
 </script>
 
 <style scoped lang="scss">
@@ -204,6 +223,30 @@ xxx()
       border: none;
       .card-header {
       }
+    }
+  }
+  :deep(.el-drawer__body) {
+    padding: 0;
+  }
+  .comm-header {
+    position: fixed;
+    top: 0;
+    z-index: 999;
+    height: 1rem;
+    width: 100%;
+    background-color: #3190e8;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    padding: 0 0.3rem;
+    .icon {
+      width: 0.4rem;
+      height: 0.4rem;
+    }
+    span {
+      width: 80%;
+      text-align: center;
+      font-size: 16px;
     }
   }
 }
