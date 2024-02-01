@@ -87,6 +87,36 @@
         </svg>
         <span> 商家详情 </span>
       </div>
+
+      <div class="active">
+        <h3>活动与属性</h3>
+        <div class="msg">
+          <ul>
+            <li v-for="active in activities" :key="active.id">
+              {{ active?.description }}
+            </li>
+            <li v-for="support in supports" :key="support.id">
+              {{ support?.description }}
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="safety">
+        <h3>食品监督安全公示</h3>
+        <div class="msg">
+          <ul>
+            <li></li>
+          </ul>
+        </div>
+      </div>
+      <div class="merchant-msg">
+        <h3>商家信息</h3>
+        <div class="msg">
+          <ul>
+            <li></li>
+          </ul>
+        </div>
+      </div>
     </el-drawer>
   </div>
 </template>
@@ -106,10 +136,12 @@ let latitude = geohash[0]
 let longitude = geohash[1]
 
 let activities = ref([])
+let supports = ref([])
 
 const getMerchantMesData = async () => {
   await merchantStore.getMerchantDetail(route.query.id, { latitude, longitude })
   activities.value = merchantStore.merchantDetail.activities
+  supports.value = merchantStore.merchantDetail.supports
 }
 const detail = () => {
   drawer.value = true
@@ -201,7 +233,7 @@ getMerchantMesData()
     height: 1rem;
     background-color: #fff;
     align-items: center;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 0.02rem solid #ccc;
     div {
       height: 50%;
       padding: 0 5px;
@@ -209,7 +241,7 @@ getMerchantMesData()
 
     .active {
       color: #3190e8;
-      border-bottom: 1px solid #3190e8;
+      border-bottom: 0.02rem solid #3190e8;
     }
   }
   .food-container {
@@ -227,26 +259,62 @@ getMerchantMesData()
   }
   :deep(.el-drawer__body) {
     padding: 0;
+    background-color: #f5f5f5;
   }
-  .comm-header {
-    position: fixed;
-    top: 0;
-    z-index: 999;
-    height: 1rem;
-    width: 100%;
-    background-color: #3190e8;
-    color: #fff;
-    display: flex;
-    align-items: center;
-    padding: 0 0.3rem;
-    .icon {
-      width: 0.4rem;
-      height: 0.4rem;
+
+  .drawer {
+    .comm-header {
+      position: fixed;
+      top: 0;
+      z-index: 999;
+      height: 1rem;
+      width: 100%;
+      background-color: #3190e8;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      padding: 0 0.3rem;
+      .icon {
+        width: 0.4rem;
+        height: 0.4rem;
+      }
+      span {
+        width: 80%;
+        text-align: center;
+        font-size: 0.32rem;
+      }
     }
-    span {
-      width: 80%;
-      text-align: center;
-      font-size: 16px;
+
+    .active,
+    .safety,
+    .merchant-msg {
+      width: 100%;
+      margin-bottom: 0.2rem;
+      background-color: #fff;
+      h3 {
+        font-weight: 400;
+      }
+      padding: 0 0.2rem;
+      h3 {
+        border-bottom: 1px solid #f5f5f5;
+        height: 0.8rem;
+        line-height: 0.8rem;
+      }
+      .msg {
+        ul {
+          display: flex;
+          flex-flow: column;
+          justify-content: space-evenly;
+          li {
+            height: 0.6rem;
+            font-size: 0.26rem;
+            margin-left: 0.2rem;
+          }
+        }
+      }
+    }
+    .active {
+      margin-top: 1.2rem;
     }
   }
 }
